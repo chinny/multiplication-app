@@ -1,0 +1,56 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 600px;
+}
+
+.tester, .table-container {
+    margin-bottom: 20px;
+}
+
+#problem {
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+#answer {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+#check {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#table {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 5px;
+}
+
+.table-cell {
+    background-color: #eee;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+}
