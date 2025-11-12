@@ -1,0 +1,12 @@
+{
+  "name": "multiplication-app",
+  "version": "1.0.0",
+  "description": "A simple multiplication practice web app.",
+  "main": "app.js",
+  "scripts": {
+    "start": "serve ."
+  },
+  "dependencies": {
+    "serve": "^14.0.1"
+  }
+}
