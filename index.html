@@ -9,7 +9,13 @@
 <body>
     <div class="container">
         <h1>Multiplication Practice</h1>
-        <div class="tester">
+
+        <div class="tabs">
+            <button class="tab-link active" data-tab="tester">Multiplication Tester</button>
+            <button class="tab-link" data-tab="sheets">Printable Sheets</button>
+        </div>
+
+        <div id="tester" class="tab-content active">
             <h2>Multiplication Tester</h2>
             <div class="options">
                 <label for="digits">Select number of digits:</label>
@@ -24,9 +30,40 @@
             <button id="check">Check</button>
             <p id="result"></p>
         </div>
+
+        <div id="sheets" class="tab-content">
+            <h2>Printable Multiplication Sheets</h2>
+            <div class="options">
+                <label for="sheet-digits-1">Number of digits (first number):</label>
+                <select id="sheet-digits-1">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+                <br>
+                <label for="sheet-digits-2-option">Second number:</label>
+                <select id="sheet-digits-2-option">
+                    <option value="random">Random digits</option>
+                    <option value="range">Range</option>
+                </select>
+                <div id="range-options" class="hidden">
+                    <label for="range-min">Min:</label>
+                    <input type="number" id="range-min" value="1">
+                    <label for="range-max">Max:</label>
+                    <input type="number" id="range-max" value="10">
+                </div>
+                <br>
+                <label for="num-problems">Number of problems:</label>
+                <input type="number" id="num-problems" value="20" min="1" max="100">
+            </div>
+            <button id="generate-sheet">Generate Sheet</button>
+            <button id="print-sheet">Print Sheet</button>
+            <div id="sheet-container"></div>
+        </div>
+
         <div class="table-container">
-            <h2>Multiplication Table</h2>
-            <div id="table"></div>
+            <button id="toggle-table">Show Multiplication Table</button>
+            <div id="table" class="hidden"></div>
         </div>
     </div>
     <script src="app.js"></script>
