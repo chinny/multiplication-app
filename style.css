@@ -48,6 +48,10 @@ body {
     gap: 5px;
 }
 
+#table.table-hidden {
+    display: none;
+}
+
 .table-cell {
     background-color: #eee;
     padding: 10px;
@@ -81,10 +85,6 @@ body {
 
 .tab-content.active {
     display: block;
-}
-
-.hidden {
-    display: none;
 }
 
 #sheet-container {

@@ -84,8 +84,8 @@ function createTable() {
 }
 
 toggleTableButton.addEventListener('click', () => {
-    tableDiv.classList.toggle('hidden');
-    toggleTableButton.textContent = tableDiv.classList.contains('hidden') ? 'Show Multiplication Table' : 'Hide Multiplication Table';
+    tableDiv.classList.toggle('table-hidden');
+    toggleTableButton.textContent = tableDiv.classList.contains('table-hidden') ? 'Show Multiplication Table' : 'Hide Multiplication Table';
 });
 
 // --- Printable Sheets ---
