@@ -2,6 +2,12 @@
 
 This is a simple web application for practicing multiplication. It features a multiplication tester with selectable difficulty and an interactive multiplication table.
 
+## Features
+
+*   **Multiplication Tester**: Practice multiplication problems with selectable difficulty (single, two, or three digits).
+*   **Printable Sheets**: Generate and print custom multiplication worksheets.
+*   **Interactive Multiplication Table**: View and hide a 12x12 multiplication table.
+
 ## Running the Application
 
 This application is containerized using Docker. To run it, you'll need to have Docker installed on your system.
