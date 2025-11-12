@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multiplication Practice</title>
     <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
 </head>
 <body>
-    <div class="container">
+    <main class="container">
         <h1>Multiplication Practice</h1>
 
         <div class="tabs">
@@ -15,7 +16,7 @@
             <button class="tab-link" data-tab="sheets">Printable Sheets</button>
         </div>
 
-        <div id="tester" class="tab-content active">
+        <section id="tester" class="tab-content active">
             <h2>Multiplication Tester</h2>
             <div class="options">
                 <label for="digits">Select number of digits:</label>
@@ -25,13 +26,13 @@
                     <option value="3">Three Digits</option>
                 </select>
             </div>
-            <div id="problem"></div>
+            <div id="problem" aria-live="polite"></div>
             <input type="number" id="answer" placeholder="Your answer">
             <button id="check">Check</button>
-            <p id="result"></p>
-        </div>
+            <p id="result" aria-live="polite"></p>
+        </section>
 
-        <div id="sheets" class="tab-content">
+        <section id="sheets" class="tab-content">
             <h2>Printable Multiplication Sheets</h2>
             <div class="options">
                 <label for="sheet-digits-1">Number of digits (first number):</label>
@@ -40,32 +41,29 @@
                     <option value="2">2</option>
                     <option value="3">3</option>
                 </select>
-                <br>
                 <label for="sheet-digits-2-option">Second number:</label>
                 <select id="sheet-digits-2-option">
                     <option value="random">Random digits</option>
                     <option value="range">Range</option>
                 </select>
-                <div id="range-options" class="hidden">
+                <div id="range-options" hidden>
                     <label for="range-min">Min:</label>
                     <input type="number" id="range-min" value="1">
                     <label for="range-max">Max:</label>
                     <input type="number" id="range-max" value="10">
                 </div>
-                <br>
                 <label for="num-problems">Number of problems:</label>
                 <input type="number" id="num-problems" value="20" min="1" max="100">
             </div>
             <button id="generate-sheet">Generate Sheet</button>
             <button id="print-sheet">Print Sheet</button>
             <div id="sheet-container"></div>
-        </div>
+        </section>
 
-        <div class="table-container">
+        <section class="table-container">
             <button id="toggle-table">Show Multiplication Table</button>
-            <div id="table" class="table-hidden"></div>
-        </div>
-    </div>
-    <script src="app.js"></script>
+            <div id="table" hidden></div>
+        </section>
+    </main>
 </body>
 </html>
