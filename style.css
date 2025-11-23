@@ -1,13 +1,19 @@
 :root {
     --primary-color: #4a90e2;
     --secondary-color: #50e3c2;
-    --background-color: #f8f9fa;
-    --container-bg-color: #ffffff;
-    --font-color: #333;
+
+    /* Glassmorphism Variables */
+    --bg-gradient: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+    --glass-bg: rgba(255, 255, 255, 0.25);
+    --glass-border: rgba(255, 255, 255, 0.4);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+    --backdrop-blur: blur(10px);
+
+    --font-color: #2c3e50;
     --light-font-color: #ffffff;
-    --border-color: #dee2e6;
-    --correct-color: #28a745;
-    --incorrect-color: #dc3545;
+    --border-color: rgba(255, 255, 255, 0.5); /* Lighter for glass */
+    --correct-color: #2ecc71;
+    --incorrect-color: #e74c3c;
     --shadow-color: rgba(0, 0, 0, 0.1);
     --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -18,20 +24,27 @@ body {
     justify-content: center;
     align-items: flex-start;
     min-height: 100vh;
-    background-color: var(--background-color);
+    background: var(--bg-gradient);
+    background-attachment: fixed; /* Ensures gradient covers scroll */
     color: var(--font-color);
     padding: 20px;
     box-sizing: border-box;
 }
 
 .container {
-    background-color: var(--container-bg-color);
+    background: var(--glass-bg);
+    backdrop-filter: var(--backdrop-blur);
+    -webkit-backdrop-filter: var(--backdrop-blur); /* Safari support */
+    border: 1px solid var(--glass-border);
     padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px var(--shadow-color);
+    border-radius: 16px;
+    box-shadow: var(--glass-shadow);
     width: 100%;
     max-width: 700px;
     transition: all 0.3s ease;
+    /* Ensure content is readable */
+    position: relative;
+    z-index: 1;
 }
 
 h1 {
@@ -44,47 +57,112 @@ h1 {
 .tabs {
     display: flex;
     margin-bottom: 25px;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    position: relative; /* Context for desktop */
 }
 
 .tab-link {
     padding: 12px 25px;
     cursor: pointer;
     border: none;
-    background-color: transparent;
+    background: transparent;
     font-size: 1.1em;
-    color: var(--primary-color);
+    color: var(--font-color);
     position: relative;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    border-radius: 8px 8px 0 0;
+    opacity: 0.7;
 }
 
-.tab-link::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background-color: var(--primary-color);
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
+.tab-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    opacity: 1;
 }
 
 .tab-link.active {
     color: var(--primary-color);
     font-weight: bold;
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.2);
+    border-bottom: 2px solid var(--primary-color);
 }
 
-.tab-link.active::after {
-    transform: scaleX(1);
+.tab-link::after {
+    display: none; /* Remove old underline animation */
+}
+
+/* Mobile Bottom Navigation */
+@media (max-width: 600px) {
+    body {
+        padding-bottom: 80px; /* Space for bottom nav */
+    }
+
+    .container {
+        padding: 20px;
+        margin-bottom: 60px; /* Ensure scrolling clears nav */
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    .tabs {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        margin: 0;
+        background: rgba(255, 255, 255, 0.9); /* More opaque for nav */
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border-top: 1px solid var(--glass-border);
+        border-bottom: none;
+        justify-content: space-around;
+        padding: 10px 0;
+        z-index: 1000;
+        box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+    }
+
+    .tab-link {
+        border-radius: 12px;
+        padding: 10px 15px;
+        flex: 1;
+        margin: 0 10px;
+        text-align: center;
+        font-size: 0.9em;
+        background: transparent;
+        border-bottom: none; /* Remove desktop active border */
+    }
+
+    .tab-link.active {
+        background: var(--primary-color);
+        color: white;
+        border-bottom: none;
+        box-shadow: 0 4px 10px rgba(74, 144, 226, 0.3);
+    }
 }
 
 .tab-content {
     display: none;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 .tab-content.active {
     display: block;
+    animation: fadeIn 0.5s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .options {
@@ -101,39 +179,46 @@ label {
 
 select,
 input[type="number"] {
-    padding: 10px;
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
+    padding: 12px;
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
     font-size: 1em;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background: rgba(255, 255, 255, 0.5); /* Semi-transparent input */
+    color: var(--font-color);
+    transition: all 0.3s ease;
 }
 
 select:focus,
 input[type="number"]:focus {
+    background: rgba(255, 255, 255, 0.8);
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+    box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.15);
     outline: none;
 }
 
 button {
-    padding: 12px 20px;
-    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    padding: 12px 24px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: var(--light-font-color);
     border: none;
-    border-radius: 6px;
+    border-radius: 12px;
     cursor: pointer;
     font-size: 1.1em;
-    transition: transform 0.2s ease, box-shadow 0.3s ease;
-    box-shadow: 0 2px 5px var(--shadow-color);
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+    letter-spacing: 0.5px;
 }
 
 button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px var(--shadow-color);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(74, 144, 226, 0.4);
+    filter: brightness(1.05);
 }
 
 button:active {
-    transform: translateY(0);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(74, 144, 226, 0.3);
 }
 
 #problem {
@@ -161,18 +246,25 @@ button:active {
 }
 
 .table-cell {
-    background-color: #f1f1f1;
+    /* Base styles overriden above, but consolidating here */
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255,255,255,0.4);
     padding: 10px;
     text-align: center;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
 .table-cell:hover {
     background-color: var(--secondary-color);
     color: var(--light-font-color);
-    transform: scale(1.05);
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    z-index: 2; /* Pop over others */
+    position: relative;
 }
 
 #sheet-container {
@@ -185,9 +277,18 @@ button:active {
 .problem-item {
     font-size: 1.2em;
     text-align: center;
-    padding: 10px;
-    background-color: #f8f8f8;
-    border-radius: 6px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease;
+}
+
+.problem-item:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.6);
 }
 
 @media print {
