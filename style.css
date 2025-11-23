@@ -11,7 +11,8 @@
 
     --font-color: #2c3e50;
     --light-font-color: #ffffff;
-    --border-color: rgba(255, 255, 255, 0.5); /* Lighter for glass */
+    --border-color: rgba(255, 255, 255, 0.5);
+    /* Lighter for glass */
     --correct-color: #2ecc71;
     --incorrect-color: #e74c3c;
     --shadow-color: rgba(0, 0, 0, 0.1);
@@ -25,7 +26,8 @@ body {
     align-items: flex-start;
     min-height: 100vh;
     background: var(--bg-gradient);
-    background-attachment: fixed; /* Ensures gradient covers scroll */
+    background-attachment: fixed;
+    /* Ensures gradient covers scroll */
     color: var(--font-color);
     padding: 20px;
     box-sizing: border-box;
@@ -34,7 +36,8 @@ body {
 .container {
     background: var(--glass-bg);
     backdrop-filter: var(--backdrop-blur);
-    -webkit-backdrop-filter: var(--backdrop-blur); /* Safari support */
+    -webkit-backdrop-filter: var(--backdrop-blur);
+    /* Safari support */
     border: 1px solid var(--glass-border);
     padding: 30px;
     border-radius: 16px;
@@ -58,7 +61,8 @@ h1 {
     display: flex;
     margin-bottom: 25px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    position: relative; /* Context for desktop */
+    position: relative;
+    /* Context for desktop */
 }
 
 .tab-link {
@@ -88,18 +92,23 @@ h1 {
 }
 
 .tab-link::after {
-    display: none; /* Remove old underline animation */
+    display: none;
+    /* Remove old underline animation */
 }
 
 /* Mobile Bottom Navigation */
 @media (max-width: 600px) {
     body {
-        padding-bottom: 80px; /* Space for bottom nav */
+        padding-bottom: 80px;
+        /* Space for bottom nav */
     }
 
     .container {
         padding: 20px;
-        margin-bottom: 60px; /* Ensure scrolling clears nav */
+        padding-bottom: 100px;
+        /* Ensure content clears nav */
+        margin-bottom: 60px;
+        /* Ensure scrolling clears nav */
     }
 
     h1 {
@@ -112,7 +121,8 @@ h1 {
         left: 0;
         width: 100%;
         margin: 0;
-        background: rgba(255, 255, 255, 0.9); /* More opaque for nav */
+        background: rgba(255, 255, 255, 0.9);
+        /* More opaque for nav */
         backdrop-filter: blur(15px);
         -webkit-backdrop-filter: blur(15px);
         border-top: 1px solid var(--glass-border);
@@ -120,7 +130,7 @@ h1 {
         justify-content: space-around;
         padding: 10px 0;
         z-index: 1000;
-        box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+        box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
     }
 
     .tab-link {
@@ -131,7 +141,8 @@ h1 {
         text-align: center;
         font-size: 0.9em;
         background: transparent;
-        border-bottom: none; /* Remove desktop active border */
+        border-bottom: none;
+        /* Remove desktop active border */
     }
 
     .tab-link.active {
@@ -159,6 +170,7 @@ h1 {
         opacity: 0;
         transform: translateY(10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -183,7 +195,8 @@ input[type="number"] {
     border: 1px solid var(--glass-border);
     border-radius: 12px;
     font-size: 1em;
-    background: rgba(255, 255, 255, 0.5); /* Semi-transparent input */
+    background: rgba(255, 255, 255, 0.5);
+    /* Semi-transparent input */
     color: var(--font-color);
     transition: all 0.3s ease;
 }
@@ -249,21 +262,22 @@ button:active {
     /* Base styles overriden above, but consolidating here */
     background-color: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(4px);
-    border: 1px solid rgba(255,255,255,0.4);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     padding: 10px;
     text-align: center;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 .table-cell:hover {
     background-color: var(--secondary-color);
     color: var(--light-font-color);
     transform: scale(1.1);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    z-index: 2; /* Pop over others */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+    /* Pop over others */
     position: relative;
 }
 
@@ -282,7 +296,7 @@ button:active {
     backdrop-filter: blur(4px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     transition: transform 0.2s ease;
 }
 
@@ -295,9 +309,12 @@ button:active {
     body * {
         visibility: hidden;
     }
-    #sheet-container, #sheet-container * {
+
+    #sheet-container,
+    #sheet-container * {
         visibility: visible;
     }
+
     #sheet-container {
         position: absolute;
         left: 0;
