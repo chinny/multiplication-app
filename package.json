@@ -4,9 +4,13 @@
   "description": "A simple multiplication practice web app.",
   "main": "app.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "serve ."
   },
   "dependencies": {
-    "express": "^4.21.2"
+    "serve": "^14.0.1"
+  },
+  "overrides": {
+    "glob": "^11.1.0",
+    "cross-spawn": "^7.0.6"
   }
 }
