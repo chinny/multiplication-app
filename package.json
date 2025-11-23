@@ -10,5 +10,9 @@
     "cross-spawn": "^7.0.6",
     "glob": "^11.1.0",
     "serve": "^14.0.1"
+  },
+  "overrides": {
+    "cross-spawn": "^7.0.6",
+    "glob": "^11.1.0"
   }
 }
